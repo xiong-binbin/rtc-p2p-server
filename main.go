@@ -82,6 +82,8 @@ func main() {
 	ctx := context.Background()
 	var rooms sync.Map
 
+	http.Handle("/", http.FileServer(http.Dir("./www")))
+
 	http.Handle("/sig/v1/p2p", websocket.Handler(func(c *websocket.Conn) {
 		ctx, cancel := context.WithCancel(ctx)
 		defer cancel()
